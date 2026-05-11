@@ -6,15 +6,15 @@
 /*   By: kkomurat <kkomurat@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/09 19:11:07 by kkomurat          #+#    #+#             */
-/*   Updated: 2026/05/10 14:44:29 by kkomurat         ###   ########.fr       */
+/*   Updated: 2026/05/11 22:36:14 by kkomurat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-int	ft_printf(const char *, )
+int	ft_printf(const char *, ...)
 {
 }
+
+#include <stdio.h>
 
 int	main(void)
 {
