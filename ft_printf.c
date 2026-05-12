@@ -6,12 +6,20 @@
 /*   By: kkomurat <kkomurat@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/09 19:11:07 by kkomurat          #+#    #+#             */
-/*   Updated: 2026/05/11 22:36:14 by kkomurat         ###   ########.fr       */
+/*   Updated: 2026/05/12 23:56:42 by kkomurat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_printf(const char *, ...)
+int	ft_printf(const char *format, ...)
 {
+	va_list	args;
+	size_t	i;
+
+	va_start(args, format);
+	while (format[i])
+	{
+		write(1, format[i], 1);
+	}
 }
 
 #include <stdio.h>
