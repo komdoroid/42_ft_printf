@@ -1,17 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_toupper.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkomurat <kkomurat@student.42.jp>          +#+  +:+       +#+        */
+/*   By: kkomurat <kkomurat@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/09 19:11:21 by kkomurat          #+#    #+#             */
-/*   Updated: 2026/05/13 23:12:18 by kkomurat         ###   ########.fr       */
+/*   Created: 2026/04/25 08:41:29 by kkomurat          #+#    #+#             */
+/*   Updated: 2026/04/25 08:50:12 by kkomurat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <stddef.h>
-#include <unistd.h>
+#include "libft.h"
 
-char	*ft_itoa(int num);
+int	ft_toupper(int c)
+{
+	if ('a' <= c && c <= 'z')
+		return (c + ('A' - 'a'));
+	return (c);
+}
+
+// #include <stdio.h>
+// 
+// int	main(void)
+// {
+// 	char	c = 'A';
+// 
+// 	printf("c : %c\n", ft_toupper(c));
+// }
