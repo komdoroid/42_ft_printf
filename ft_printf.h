@@ -6,9 +6,10 @@
 /*   By: kkomurat <kkomurat@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/09 19:11:21 by kkomurat          #+#    #+#             */
-/*   Updated: 2026/05/09 19:28:39 by kkomurat         ###   ########.fr       */
+/*   Updated: 2026/05/13 21:31:08 by kkomurat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
-
+#include <stddef.h>
+#include <unistd.h>
