@@ -6,16 +6,16 @@
 /*   By: kkomurat <kkomurat@student.42tokyo.jp      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/09 19:11:07 by kkomurat          #+#    #+#             */
-/*   Updated: 2026/05/14 21:38:24 by kkomurat         ###   ########.fr       */
+/*   Updated: 2026/05/14 22:45:10 by kkomurat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
 
-void	ft_putstr(char *str)
+int	ft_putstr(char *str)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
 	while (str[i])
@@ -23,6 +23,7 @@ void	ft_putstr(char *str)
 		write(1, &str[i], 1);
 		i++;
 	}
+	return (i);
 }
 
 void	ft_putuint(unsigned int	num)
@@ -62,17 +63,71 @@ void	ft_putuhex(int	num)
 	write(1, &hex[num % 16], 1);
 }
 
+int	putarg_c(va_list args)
+{
+	char	c;
+
+	c = va_arg(args, int);
+	return(write(1, &c, 1));
+}
+
+int	putarg_s(va_list args)
+{
+	char	*str;
+
+	str = va_arg(args, char*);
+	return(ft_putstr(str));
+}
+
+int	
+
+int	handle_conversion(char sp, va_list args)
+{
+	unsigned long	ptr;
+	int		decimal;
+	int		hexadecimal;
+	unsigned int	u_int;
+
+	if (sp == 'c')
+		putarg_c(args);
+	else if (sp == 's')
+		putarg_s(args);
+	else if (sp == 'p')
+	{
+		ptr = (unsigned long)va_arg(args, void*);
+		ft_putstr("0x");
+		ft_puthex(ptr);
+	}
+	else if (sp == 'd' || sp == 'i')
+	{
+		decimal = va_arg(args, int);
+		ft_putstr(ft_itoa(decimal));
+	}
+	else if (sp == 'u')
+	{
+		u_int = va_arg(args, unsigned int);
+		ft_putuint(u_int);
+	}
+	else if (sp == 'x')
+	{
+		hexadecimal = va_arg(args, int);
+		ft_puthex(hexadecimal);
+	}
+	else if (sp == 'x')
+	{
+		hexadecimal = va_arg(args, int);
+		ft_putuhex(hexadecimal);
+	}
+	else if (sp == '%')
+		return (write(1, "%", 1));
+	return (0);
+}
+
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
 	int		count;
 	size_t	i;
-	char	c;
-	unsigned long	ptr;
-	char	*str;
-	int		decimal;
-	int		hexadecimal;
-	unsigned int	u_int;
 
 	va_start(args, format);
 	i = 0;
@@ -82,60 +137,20 @@ int	ft_printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			i++;
-			if (format[i] == 'c')
-			{
-				c = va_arg(args, int);
-				write(1, &c, 1);
-			}
-			else if (format[i] == 's')
-			{
-				str = va_arg(args, char*);
-				ft_putstr(str);
-			}
-			else if (format[i] == 'p')
-			{
-				ptr = (unsigned long)va_arg(args, void*);
-				ft_putstr("0x");
-				ft_puthex(ptr);
-			}
-			else if (format[i] == 'd' || format[i] == 'i')
-			{
-				decimal = va_arg(args, int);
-				ft_putstr(ft_itoa(decimal));
-			}
-			else if (format[i] == 'u')
-			{
-				u_int = va_arg(args, unsigned int);
-				ft_putuint(u_int);
-			}
-			else if (format[i] == 'x')
-			{
-				hexadecimal = va_arg(args, int);
-				ft_puthex(hexadecimal);
-			}
-			else if (format[i] == 'X')
-			{
-				hexadecimal = va_arg(args, int);
-				ft_putuhex(hexadecimal);
-			}
-			else if (format[i] == '%')
-			{
-				write(1, "%", 1);
-			}
-			else 
-				return (count);
+			count += handle_conversion(format[i], args);
 		}
 		else
 			write(1, &format[i], 1);
 		i++;
 	}
+	va_end(args);
 	return (i);
 }
 
 
 int	main(void)
 {
-	char	sample[] = "Hello, 42Tokyo!";
+	char	sample[] = "hello, 42tokyo!";
 	int	n = 42;
 	int	num_printf;
 	int	num_ft_printf;
@@ -149,12 +164,13 @@ int	main(void)
 	printf("*** %u ***\n", 42);
 	printf("*** %u ***\n", -1);
 	printf("*** %x ***\n", 255);
-	printf("*** %X ***\n", 255);
+	printf("*** %x ***\n", 255);
 	printf("*** %% ***\n");
 	printf("\n*** printf ***\n");
-	num_printf = printf("c: %c , s: %s , %%: %% , i: %i, u: %u, p: %p, x: %x, X: %X.\n", 'X', "Hello,42 Tokyo", 1234, -1234, "memory_address", 1234, 1234);
+	num_printf = printf("c: %c , s: %s , %%: %% , i: %i, u: %u, p: %p, x: %x, x: %x.\n", 'x', "hello,42 tokyo", 1234, -1234, "memory_address", 1234, 1234);
+	printf("
 	printf("printf return: %d\n", num_printf);
 	printf("\n*** ft_printf ***\n");
-	num_ft_printf = ft_printf("%c , %s , %% %i, u: %u, p: %p, x: %x, X: %X.\n", 'X', "Hello 42 Tokyo", 1234, -1234, "memory_address", 1234, 1234);
+	num_ft_printf = ft_printf("%c , %s , %% %i, u: %u, p: %p, x: %x, x: %x.\n", 'x', "hello 42 tokyo", 1234, -1234, "memory_address", 1234, 1234);
 	printf("ft_printf return: %d\n", num_ft_printf);
 }
