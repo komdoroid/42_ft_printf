@@ -6,7 +6,7 @@
 /*   By: kkomurat <kkomurat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 18:56:30 by kkomurat          #+#    #+#             */
-/*   Updated: 2026/05/16 14:06:11 by kkomurat         ###   ########.fr       */
+/*   Updated: 2026/05/16 16:14:11 by kkomurat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char	*ft_itoa(int num)
 }
 
 // #include <stdio.h>
-// 
+//
 // int	main(void)
 // {
 // 	printf("res: %s\n", ft_itoa(INT_MAX));

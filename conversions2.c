@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conversions2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kkomurat <kkomurat@student.42.jp>          +#+  +:+       +#+        */
+/*   By: kkomurat <kkomurat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/16 14:12:37 by kkomurat          #+#    #+#             */
-/*   Updated: 2026/05/16 14:12:58 by kkomurat         ###   ########.fr       */
+/*   Updated: 2026/05/16 16:54:29 by kkomurat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,16 @@
 
 int	putarg_x(va_list *args)
 {
-	int	hexadecimal;
+	unsigned int	hexadecimal;
 
-	hexadecimal = va_arg(*args, int);
+	hexadecimal = va_arg(*args, unsigned int);
 	return (ft_puthex(hexadecimal, "0123456789abcdef"));
 }
 
-int	putarg_X(va_list *args)
+int	putarg_ux(va_list *args)
 {
-	int	hexadecimal;
+	unsigned int	hexadecimal;
 
-	hexadecimal = va_arg(*args, int);
+	hexadecimal = va_arg(*args, unsigned int);
 	return (ft_puthex(hexadecimal, "0123456789ABCDEF"));
 }
-
