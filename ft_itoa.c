@@ -6,7 +6,7 @@
 /*   By: kkomurat <kkomurat@student.42tokyo.jp>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/04/25 18:56:30 by kkomurat          #+#    #+#             */
-/*   Updated: 2026/05/16 16:14:11 by kkomurat         ###   ########.fr       */
+/*   Updated: 2026/05/16 17:08:44 by kkomurat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,3 @@ char	*ft_itoa(int num)
 	ft_fillnbr(res, nb, len);
 	return (res);
 }
-
-// #include <stdio.h>
-//
-// int	main(void)
-// {
-// 	printf("res: %s\n", ft_itoa(INT_MAX));
-// 	printf("res: %s\n", ft_itoa(INT_MIN));
-// 	printf("res: %s\n", ft_itoa(0));
-// 	printf("res: %s\n", ft_itoa(1));
-// 	printf("res: %s\n", ft_itoa(-1));
-// }
