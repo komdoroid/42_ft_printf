@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   conversions2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kkomurat <kkomurat@student.42.jp>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/05/09 19:11:21 by kkomurat          #+#    #+#             */
-/*   Updated: 2026/05/16 14:14:25 by kkomurat         ###   ########.fr       */
+/*   Created: 2026/05/16 14:12:37 by kkomurat          #+#    #+#             */
+/*   Updated: 2026/05/16 14:12:58 by kkomurat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <stddef.h>
-#include <stdlib.h>
-#include <unistd.h>
+#include "ft_printf.h"
 
-int	ft_printf(const char *format, ...);
-int	handle_conversion(char sp, va_list *args);
-int	putarg_c(va_list *args);
-int	putarg_s(va_list *args);
-int	putarg_p(va_list *args);
-int	putarg_di(va_list *args);
-int	putarg_u(va_list *args);
-int	putarg_x(va_list *args);
-int	putarg_X(va_list *args);
-char	*ft_itoa(int num);
+int	putarg_x(va_list *args)
+{
+	int	hexadecimal;
+
+	hexadecimal = va_arg(*args, int);
+	return (ft_puthex(hexadecimal, "0123456789abcdef"));
+}
+
+int	putarg_X(va_list *args)
+{
+	int	hexadecimal;
+
+	hexadecimal = va_arg(*args, int);
+	return (ft_puthex(hexadecimal, "0123456789ABCDEF"));
+}
+
